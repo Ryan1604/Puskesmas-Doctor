@@ -18,6 +18,8 @@
     "axios": "^0.21.1",
     "react": "16.13.1",
     "react-native": "0.63.4",
+    "react-native-autocomplete-input": "^4.2.0",
+    "react-native-autocomplete-search": "^1.0.8",
     "react-native-flash-message": "^0.1.21",
     "react-native-gesture-handler": "^1.9.0",
     "react-native-reanimated": "^1.13.2",

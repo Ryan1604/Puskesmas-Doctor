@@ -3,7 +3,7 @@ import {showMessage, storeData} from '../../utils';
 import {setLoading} from './global';
 
 const API_HOST = {
-  url: 'http://puskesmas-ceria.alatujilingkungan.id/api',
+  url: 'http://192.168.2.11/project/puskesmas/api',
 };
 
 export const logInAction = (form, navigation) => (dispatch) => {
@@ -27,7 +27,6 @@ export const logInAction = (form, navigation) => (dispatch) => {
     })
     .catch((err) => {
       dispatch(setLoading(false));
-      console.log('Error: ', err);
       showMessage(err?.response?.data?.meta?.message);
     });
 };
