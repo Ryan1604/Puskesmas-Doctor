@@ -11,7 +11,6 @@ const Login = ({navigation}) => {
     email: '',
     password: '',
   });
-  // console.log('Form: ', form);
   const dispatch = useDispatch();
 
   const onSubmit = () => {

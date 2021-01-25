@@ -28,5 +28,6 @@ const styles = StyleSheet.create({
     backgroundColor: readonly ? '#AAAAAA' : '#FFFFFF',
     borderRadius: 8,
     padding: 10,
+    color: readonly ? '#FFFFFF' : '#AAAAAA',
   }),
 });

@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const Button = ({text, onPress}) => {
+const Button = ({text, onPress, menu}) => {
   return (
     <TouchableOpacity activeOpacity={0.7} onPress={onPress}>
-      <View style={styles.container}>
-        <Text style={styles.text}>{text}</Text>
+      <View style={styles.container(menu)}>
+        <Text style={styles.text(menu)}>{text}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -15,15 +15,15 @@ const Button = ({text, onPress}) => {
 export default Button;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#228B22',
+  container: (menu) => ({
+    backgroundColor: menu ? '#CCCCCC' : '#228B22',
     padding: 12,
     borderRadius: 8,
-  },
-  text: {
+  }),
+  text: (menu) => ({
     fontSize: 14,
     fontFamily: 'Poppins-Medium',
-    color: '#FFFFFF',
+    color: menu ? '#020202' : '#FFFFFF',
     textAlign: 'center',
-  },
+  }),
 });

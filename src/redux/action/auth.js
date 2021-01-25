@@ -20,13 +20,14 @@ export const logInAction = (form, navigation) => (dispatch) => {
     .then((res) => {
       const profile = res.data.data;
 
-      dispatch(setLoading(false));
-
       storeData('userProfile', profile);
+
+      dispatch(setLoading(false));
       navigation.reset({index: 0, routes: [{name: 'Home'}]});
     })
     .catch((err) => {
       dispatch(setLoading(false));
-      showMessage(err?.response?.data?.meta?.message);
+      console.log(err);
+      showMessage('Login gagal');
     });
 };
