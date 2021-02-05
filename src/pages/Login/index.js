@@ -20,10 +20,9 @@ const Login = ({navigation}) => {
     <View style={styles.page}>
       <View style={styles.headerContainer}>
         <Image source={LogoPus} style={styles.logo} />
-        <Text style={styles.title}>Puskesmas Ceria</Text>
       </View>
       <Gap height={20} />
-      <Text style={styles.text}>Selamat Datang di Puskesmas Ceria</Text>
+      <Text style={styles.text}>Selamat Datang di MEDIRA</Text>
       <View style={styles.input}>
         <TextInput
           placeholder="Username or email"
@@ -54,19 +53,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFF',
     justifyContent: 'center',
   },
-  logo: {
-    width: 80,
-    height: 80,
-  },
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  title: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 32,
-    marginLeft: 16,
   },
   text: {
     fontFamily: 'Poppins-Medium',

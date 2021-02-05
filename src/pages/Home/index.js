@@ -157,7 +157,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const API_HOST = {
-    url: 'http://192.168.2.11/project/puskesmas/api',
+    url: 'https://puskesmas-ceria.alatujilingkungan.id/api',
   };
 
   const search = () => {
@@ -1031,7 +1031,25 @@ const Home = () => {
     setAge('');
   };
 
-  const nextPasien = () => {};
+  const nextPasien = () => {
+    Axios.get(`${API_HOST.url}/nextDokter`)
+      .then((result) => {
+        if (result.data.nomor === null) {
+          alert('Nomor Antrian habis ');
+        } else {
+          alert('Pasien dengan Nomor Antrian ' + result.data.nomor);
+        }
+      })
+      .catch((err) => console.log('Error: ', err));
+  };
+
+  const repeatPasien = () => {
+    Axios.get(`${API_HOST.url}/repeatSuara`)
+      .then((result) => {
+        alert('Pasien dengan Nomor Antrian ' + result.data.nomor);
+      })
+      .catch((err) => console.log('Error: ', err));
+  };
 
   const radio_props = [
     {label: 'Setuju', value: 1},
@@ -1047,44 +1065,46 @@ const Home = () => {
         <View style={styles.sidebar}>
           {status === 'Pemeriksaan' ? (
             <View style={styles.sidebarContainer}>
-              <Gap height={10} />
-              <Button text="Kembali" onPress={back} />
-              <View style={styles.contentData}>
-                <View style={styles.left}>
-                  <Gap height={10} />
-                  <Button text="Riwayat" onPress={riwayat} />
-                  <Gap height={10} />
-                  <Button text="Pernafasan" onPress={pernafasan} />
-                  <Gap height={10} />
-                  <Button text="Persyarafan" onPress={persyarafan} />
-                  <Gap height={10} />
-                  <Button text="Pengidu" onPress={pengidu} />
-                  <Gap height={10} />
-                  <Button text="Ekskresi" onPress={eksresi} />
-                  <Gap height={10} />
-                  <Button text="Kulit" onPress={kulit} />
-                  <Gap height={10} />
-                  <Button text="Psikologis" onPress={psikologis} />
-                  <Gap height={10} />
-                  <Button text="Data Penunjang" onPress={penunjang} />
+              <ScrollView showsVerticalScrollIndicator={false}>
+                <Gap height={10} />
+                <Button text="Kembali" onPress={back} />
+                <View style={styles.contentData}>
+                  <View style={styles.left}>
+                    <Gap height={10} />
+                    <Button text="Riwayat" onPress={riwayat} />
+                    <Gap height={10} />
+                    <Button text="Pernafasan" onPress={pernafasan} />
+                    <Gap height={10} />
+                    <Button text="Persyarafan" onPress={persyarafan} />
+                    <Gap height={10} />
+                    <Button text="Pengidu" onPress={pengidu} />
+                    <Gap height={10} />
+                    <Button text="Ekskresi" onPress={eksresi} />
+                    <Gap height={10} />
+                    <Button text="Kulit" onPress={kulit} />
+                    <Gap height={10} />
+                    <Button text="Psikologis" onPress={psikologis} />
+                    <Gap height={10} />
+                    <Button text="Data Penunjang" onPress={penunjang} />
+                  </View>
+                  <View style={styles.right}>
+                    <Gap height={10} />
+                    <Button text="Fisik" onPress={fisik} />
+                    <Gap height={10} />
+                    <Button text="Kardiovaskular" onPress={kardiovaskular} />
+                    <Gap height={10} />
+                    <Button text="Penglihatan" onPress={penglihatan} />
+                    <Gap height={10} />
+                    <Button text="Pendengaran" onPress={pendengaran} />
+                    <Gap height={10} />
+                    <Button text="Pencernaan" onPress={pencernaan} />
+                    <Gap height={10} />
+                    <Button text="Reproduksi" onPress={reproduksi} />
+                    <Gap height={10} />
+                    <Button text="Hambatan Diri" onPress={hambatan} />
+                  </View>
                 </View>
-                <View style={styles.right}>
-                  <Gap height={10} />
-                  <Button text="Fisik" onPress={fisik} />
-                  <Gap height={10} />
-                  <Button text="Kardiovaskular" onPress={kardiovaskular} />
-                  <Gap height={10} />
-                  <Button text="Penglihatan" onPress={penglihatan} />
-                  <Gap height={10} />
-                  <Button text="Pendengaran" onPress={pendengaran} />
-                  <Gap height={10} />
-                  <Button text="Pencernaan" onPress={pencernaan} />
-                  <Gap height={10} />
-                  <Button text="Reproduksi" onPress={reproduksi} />
-                  <Gap height={10} />
-                  <Button text="Hambatan Diri" onPress={hambatan} />
-                </View>
-              </View>
+              </ScrollView>
             </View>
           ) : (
             <View style={styles.sidebarContainer}>
@@ -1128,7 +1148,10 @@ const Home = () => {
                 <View>
                   <Button text="Panggil Pasien" onPress={() => nextPasien()} />
                   <Gap height={10} />
-                  <Button text="Panggil Ulang Pasien" />
+                  <Button
+                    text="Panggil Ulang Pasien"
+                    onPress={() => repeatPasien()}
+                  />
                 </View>
               )}
             </View>
@@ -1137,9 +1160,11 @@ const Home = () => {
         {/* End Sidebar */}
         {/* Contente */}
         <SafeAreaView style={styles.safeArea}>
-          <ScrollView style={styles.scrollView}>
-            <View style={styles.container}>
-              <View style={styles.contentContainer}>
+          <View style={styles.container}>
+            <View style={styles.contentContainer}>
+              <ScrollView
+                style={styles.scrollView}
+                showsVerticalScrollIndicator={false}>
                 <View style={styles.headerContent}>
                   <Text style={styles.text}>
                     {idRekamMedis ? '' : ''}
@@ -1860,7 +1885,7 @@ const Home = () => {
                         <Text style={styles.value}>{puMasalah}</Text>
                       </View>
                       <View style={styles.riwayat}>
-                        <Text style={styles.label}>Masalah Lainyya:</Text>
+                        <Text style={styles.label}>Masalah Lainnya:</Text>
                         <Text style={styles.value}>{puMasalahLainnya}</Text>
                       </View>
                     </View>
@@ -1891,7 +1916,7 @@ const Home = () => {
                         <Text style={styles.value}>{phBolaMata}</Text>
                       </View>
                       <View style={styles.riwayat}>
-                        <Text style={styles.label}>Bola Mata Lainny:</Text>
+                        <Text style={styles.label}>Bola Mata Lainnya:</Text>
                         <Text style={styles.value}>{phBolaMataLainnya}</Text>
                       </View>
                       <View style={styles.riwayat}>
@@ -2367,9 +2392,9 @@ const Home = () => {
                     <Gap height={16} />
                   </View>
                 )}
-              </View>
+              </ScrollView>
             </View>
-          </ScrollView>
+          </View>
         </SafeAreaView>
         {/* End Content */}
       </View>

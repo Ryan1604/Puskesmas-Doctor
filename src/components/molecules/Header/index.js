@@ -1,13 +1,13 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {LogoPus, LogoTasik} from '../../../assets';
+import {Logo, LogoTasik} from '../../../assets';
 
 const Header = () => {
   return (
     <View style={styles.container}>
-      <Image source={LogoPus} style={styles.logo} />
+      <Image source={Logo} style={styles.logo} />
       <View>
-        <Text style={styles.text}>Puskesmas Ceria</Text>
+        <Text style={styles.text}>MEDIRA</Text>
         <Text style={styles.text}>Kabupaten Tasikmalaya</Text>
       </View>
       <Image source={LogoTasik} style={styles.logo} />

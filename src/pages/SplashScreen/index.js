@@ -21,7 +21,6 @@ const SplashScreen = ({navigation}) => {
     <View style={styles.page}>
       <Image source={LogoPus} style={styles.logo} />
       <Gap height={20} />
-      <Text style={styles.text}>Puskesmas Ceria</Text>
     </View>
   );
 };
@@ -34,14 +33,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    fontFamily: 'Poppins-Regular',
-    fontSize: 32,
-    color: '#FFFFFF',
-  },
-  logo: {
-    width: 120,
-    height: 120,
   },
 });
